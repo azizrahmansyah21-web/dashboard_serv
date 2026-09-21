@@ -43,11 +43,13 @@ function App() {
   const formatNetworkHistory = (netHistory) => {
     const grouped = {};
     netHistory.forEach(item => {
-      // Group by timestamp
-      if (!grouped[item.timestamp]) {
-        grouped[item.timestamp] = { timestamp: item.timestamp };
+      // Ubah UTC SQLite (YYYY-MM-DD HH:MM:SS) ke format waktu lokal (WIB)
+      const localTime = new Date(item.timestamp.replace(' ', 'T') + 'Z').toLocaleTimeString();
+      
+      if (!grouped[localTime]) {
+        grouped[localTime] = { timestamp: localTime };
       }
-      grouped[item.timestamp][item.target] = item.response_time;
+      grouped[localTime][item.target] = item.response_time;
     });
     return Object.values(grouped);
   };
@@ -260,7 +262,7 @@ function App() {
                       </span>
                     </td>
                     <td className="py-3 px-4 text-right text-xs text-slate-400 whitespace-nowrap">
-                      {new Date(event.timestamp).toLocaleTimeString()}
+                      {new Date(event.timestamp.replace(' ', 'T') + 'Z').toLocaleString()}
                     </td>
                   </tr>
                 ))}

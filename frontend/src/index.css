@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-200;
+    @apply bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans transition-colors duration-200;
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }

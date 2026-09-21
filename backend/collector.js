@@ -90,7 +90,8 @@ const collectProcesses = async () => {
       name: p.name,
       pid: p.pid,
       cpu: p.cpu,
-      mem: p.mem
+      mem: p.mem,
+      memRss: p.memRss
     }));
 
     // Find tracked processes
@@ -100,7 +101,8 @@ const collectProcesses = async () => {
         name: p.name,
         pid: p.pid,
         cpu: p.cpu,
-        mem: p.mem
+        mem: p.mem,
+        memRss: p.memRss
       }));
 
     currentProcesses = { top, tracked };

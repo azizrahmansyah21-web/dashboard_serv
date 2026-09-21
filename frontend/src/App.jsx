@@ -185,6 +185,7 @@ function App() {
                   <th className="py-2 px-3">PID</th>
                   <th className="py-2 px-3">Name</th>
                   <th className="py-2 px-3 text-right">CPU %</th>
+                  <th className="py-2 px-3 text-right">RAM</th>
                 </tr>
               </thead>
               <tbody>
@@ -193,6 +194,9 @@ function App() {
                     <td className="py-2 px-3 text-slate-400">{p.pid}</td>
                     <td className="py-2 px-3">{p.name}</td>
                     <td className="py-2 px-3 text-right font-mono text-emerald-400">{p.cpu.toFixed(1)}%</td>
+                    <td className="py-2 px-3 text-right font-mono text-purple-400">
+                      {p.memRss ? (p.memRss / 1024).toFixed(1) + ' MB' : (p.mem ? p.mem.toFixed(1) + '%' : 'N/A')}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -207,16 +211,20 @@ function App() {
                   <th className="py-2 px-3">PID</th>
                   <th className="py-2 px-3">Name</th>
                   <th className="py-2 px-3 text-right">CPU %</th>
+                  <th className="py-2 px-3 text-right">RAM</th>
                 </tr>
               </thead>
               <tbody>
                 {processes.tracked.length === 0 ? (
-                  <tr><td colSpan="3" className="py-4 text-center text-slate-500">No tracked processes found</td></tr>
+                  <tr><td colSpan="4" className="py-4 text-center text-slate-500">No tracked processes found</td></tr>
                 ) : processes.tracked.map((p, i) => (
                   <tr key={i} className="border-b border-slate-700/30">
                     <td className="py-2 px-3 text-slate-400">{p.pid}</td>
                     <td className="py-2 px-3">{p.name}</td>
                     <td className="py-2 px-3 text-right font-mono text-emerald-400">{p.cpu.toFixed(1)}%</td>
+                    <td className="py-2 px-3 text-right font-mono text-purple-400">
+                      {p.memRss ? (p.memRss / 1024).toFixed(1) + ' MB' : (p.mem ? p.mem.toFixed(1) + '%' : 'N/A')}
+                    </td>
                   </tr>
                 ))}
               </tbody>

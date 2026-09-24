@@ -116,7 +116,7 @@ function App() {
               <h2 className="text-sm font-medium">CPU Load</h2>
             </div>
             <div className="text-3xl font-semibold text-gray-900 dark:text-white mt-auto">
-              {server ? server.cpu_load.toFixed(1) : 0}%
+              {server && server.cpu_load !== undefined ? server.cpu_load.toFixed(1) : 0}%
             </div>
           </div>
 
@@ -251,9 +251,9 @@ function App() {
                       <tr key={i} className="hover:bg-gray-50 dark:hover:bg-slate-800/20 transition-colors">
                         <td className="py-3 px-6 text-gray-400 dark:text-slate-500 font-mono text-xs">{p.pid}</td>
                         <td className="py-3 px-6 text-gray-700 dark:text-slate-300 font-medium">{p.name}</td>
-                        <td className="py-3 px-6 text-right font-mono text-emerald-600 dark:text-emerald-400">{p.cpu.toFixed(1)}%</td>
+                        <td className="py-3 px-6 text-right font-mono text-emerald-600 dark:text-emerald-400">{p.cpu !== undefined ? p.cpu.toFixed(1) : '0.0'}%</td>
                         <td className="py-3 px-6 text-right font-mono text-purple-600 dark:text-purple-400">
-                          {p.memRss ? (p.memRss / 1024).toFixed(1) + ' MB' : (p.mem ? p.mem.toFixed(1) + '%' : 'N/A')}
+                          {p.memRss !== undefined ? (p.memRss / 1024).toFixed(1) + ' MB' : (p.mem !== undefined ? p.mem.toFixed(1) + '%' : 'N/A')}
                         </td>
                       </tr>
                     ))}
@@ -281,9 +281,9 @@ function App() {
                       <tr key={i} className="hover:bg-gray-50 dark:hover:bg-slate-800/20 transition-colors">
                         <td className="py-3 px-6 text-gray-400 dark:text-slate-500 font-mono text-xs">{p.pid}</td>
                         <td className="py-3 px-6 text-gray-700 dark:text-slate-300 font-medium">{p.name}</td>
-                        <td className="py-3 px-6 text-right font-mono text-emerald-600 dark:text-emerald-400">{p.cpu.toFixed(1)}%</td>
+                        <td className="py-3 px-6 text-right font-mono text-emerald-600 dark:text-emerald-400">{p.cpu !== undefined ? p.cpu.toFixed(1) : '0.0'}%</td>
                         <td className="py-3 px-6 text-right font-mono text-purple-600 dark:text-purple-400">
-                          {p.memRss ? (p.memRss / 1024).toFixed(1) + ' MB' : (p.mem ? p.mem.toFixed(1) + '%' : 'N/A')}
+                          {p.memRss !== undefined ? (p.memRss / 1024).toFixed(1) + ' MB' : (p.mem !== undefined ? p.mem.toFixed(1) + '%' : 'N/A')}
                         </td>
                       </tr>
                     ))}
